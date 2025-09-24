@@ -1,121 +1,66 @@
 ---
 layout: default
-title: Usage Examples
+title: Exemplos de Uso
 ---
 
-# Usage Examples
+Com o ambiente configurado e o agente em execução, você está pronto para começar a análise. Esta página mostra um fluxo de trabalho completo e detalhado.
 
-## Complete Workflow Example
+## O Conceito de "Contexto" do Agente
 
-### Step 1: Start Services
+Antes de começar, é crucial entender o conceito de **contexto**. O agente, por padrão, não tem conhecimento prévio sobre os seus arquivos locais. Ele só "aprende" sobre um arquivo depois que você o instrui a lê-lo.
 
-```bash
-# Terminal 1: Start Lemonade Server
-lemonade-server-dev serve
+- **Memória de Trabalho:** Pense no contexto como a memória de trabalho de curto prazo do agente. Quando você usa o comando `read_file`, o conteúdo daquele arquivo é carregado nesta memória. Todas as perguntas e comandos subsequentes que você der levarão em conta as informações que estão nesta memória.
+- **Perda de Contexto:** Esta memória não é permanente. Se você reiniciar o agente (ou o contêiner Docker), o contexto é apagado. Você precisará carregar os arquivos novamente para que ele se "lembre" deles para a nova sessão.
 
-# Terminal 2: Run Agent
-tiny-agents run agent.json
-```
+## Fluxo de Análise Completo: Passo a Passo
 
-### Step 2: Load Data
+Vamos simular um caso de uso real: analisar se o candidato "John Doe" é um bom "fit" para a vaga de "Engenheiro de Software Backend".
+
+### Passo 1: Carregar a Descrição da Vaga
+
+O primeiro passo é sempre fornecer o contexto principal. Neste caso, a descrição da vaga.
 
 ```text
 use only tool read_file to read job_description.md
 ```
+> **Por que `use only tool`?** Para modelos de linguagem menores (como o Jan-Nano), ser explícito ajuda o modelo a evitar ambiguidades e a escolher a ferramenta correta (`read_file`) sem hesitação.
+>
+> O agente responderá confirmando que leu o arquivo. Agora, os requisitos da vaga estão no contexto.
+
+### Passo 2: Carregar o Currículo do Candidato
+
+Em seguida, adicione o segundo pedaço de informação ao contexto: o currículo do candidato.
 
 ```text
 use only tool read_file to read candidates/john_resume.md
 ```
+> O contexto do agente agora contém as informações da vaga **e** do candidato. Ele está pronto para a análise.
 
-### Step 3: Perform Analysis
+### Passo 3: Fazer a Pergunta de Análise
 
-```text
-Does John Doe meet the job requirements? Is he suitable for the position?
-```
-
-### Step 4: Generate Documents
+Agora que o agente tem todos os dados, você pode fazer a pergunta principal. Para obter uma resposta de alta qualidade, seja o mais específico possível no seu prompt.
 
 ```text
-use only tool write_file to create invite.md with interview invitation for John Doe
+Com base nos dois arquivos que você leu, a vaga e o currículo, John Doe atende aos requisitos? Forneça uma análise detalhada, listando os pontos fortes onde ele se alinha com a vaga e os pontos fracos ou requisitos que ele pode não atender.
 ```
+> O LLM irá processar sua pergunta, cruzar as informações dos dois documentos que estão em seu contexto e gerar uma análise inteligente e estruturada.
 
-### Step 5: Verify Results
+### Passo 4: Gerar um Artefato (Convite de Entrevista)
+
+Satisfeito com a análise, você pode pedir ao agente para realizar uma ação, como criar um arquivo de convite.
 
 ```text
-use only tool read_file to read invite.md
+use only a tool write_file to create invite.md with a formal interview invitation for John Doe for the Software Engineer Backend position. Include a placeholder for a scheduling link.
 ```
+> O agente usará a ferramenta `write_file` para criar um novo arquivo chamado `invite.md` com o conteúdo solicitado.
 
-## Sample Data Files
+### Passo 5: Verificar o Trabalho do Agente
 
-### job_description.md
-```markdown
-# Vaga: Desenvolvedor Python Sênior
+É sempre uma boa prática de "confiar, mas verificar". Peça ao agente para ler o arquivo que ele acabou de criar para que você possa revisar o resultado.
 
-## Empresa
-TechCorp Solutions
-
-## Requisitos Obrigatórios
-- 5+ anos de experiência com Python
-- Conhecimento em FastAPI, Django ou Flask
-- Experiência com bancos de dados (PostgreSQL, MongoDB)
-- Inglês intermediário
-
-## Salário
-R$ 12.000 - R$ 18.000
-```
-
-### candidates/john_resume.md
-```markdown
-# John Doe - Desenvolvedor Python
-
-## Experiência Profissional
-### Desenvolvedor Python Sênior | TechStart Solutions
-**Período**: Jan 2021 - Presente (3 anos)
-- Desenvolvimento de APIs REST usando FastAPI
-- Deploy de aplicações em AWS usando Docker
-
-## Habilidades Técnicas
-- **Linguagens**: Python, JavaScript, SQL
-- **Frameworks**: FastAPI, Django, Flask
-- **Bancos**: PostgreSQL, MongoDB
-
-## Idiomas
-- **Inglês**: Avançado
-```
-
-## Expected Output
-
-### Analysis Response
 ```text
-✅ **COMPATIBILIDADE: ALTA**
-
-John Doe atende aos requisitos principais da vaga:
-- ✅ 6 anos de experiência com Python (requisito: 5+)
-- ✅ Conhecimento em FastAPI e Django
-- ✅ Experiência com PostgreSQL e MongoDB
-- ✅ Inglês avançado (requisito: intermediário)
-
-**Recomendação**: Candidato altamente qualificado para a posição.
+use tool read_file to read invite.md
 ```
+> O agente exibirá o conteúdo do convite, permitindo que você o revise e confirme que está correto, finalizando o ciclo de trabalho.
 
-### Generated Invite
-```markdown
-# Convite para Entrevista - John Doe
-
-Prezado John Doe,
-
-Ficamos impressionados com seu perfil e gostaríamos de convidá-lo para uma entrevista para a vaga de Desenvolvedor Python Sênior na TechCorp Solutions.
-
-## Detalhes da Entrevista
-- **Data**: A confirmar
-- **Modalidade**: Online (Google Meet)
-- **Duração**: 1 hora
-
-Aguardamos seu retorno.
-
-Atenciosamente,
-Equipe de Recrutamento
-```
-
-[← Back to API](api.html) | [Next: Troubleshooting →](troubleshooting.html)
-```
+Este ciclo de **Ler -> Analisar -> Agir -> Verificar** é a base para interagir de forma eficaz com o seu agente de IA local. Experimente com seus próprios arquivos de vagas e currículos para ver o poder da ferramenta!

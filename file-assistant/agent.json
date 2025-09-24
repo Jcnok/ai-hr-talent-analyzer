@@ -5,7 +5,7 @@
     {
       "type": "stdio",
       "config": {
-        "command": "/home/jcnok/.nvm/versions/node/v20.15.0/bin/npx",
+        "command": "/CAMINHO/DO/NPX",
         "args": [
           "-y",
           "@wonderwhy-er/desktop-commander"

@@ -1,0 +1,15 @@
+source "https://rubygems.org"
+
+# Especifica a versão do Jekyll para garantir compatibilidade com o GitHub Pages
+gem "jekyll", "~> 3.9.3"
+
+# Especifica o tema padrão usado pelo GitHub Pages
+gem "minima", "~> 2.5"
+
+# Plugins que o GitHub Pages suporta e que você já tinha no _config.yml
+gem "jekyll-feed", "~> 0.12"
+gem "jekyll-sitemap"
+gem "jekyll-seo-tag"
+
+# Adiciona o Webrick, que é necessário para o `jekyll serve` em versões mais recentes do Ruby
+gem "webrick", "~> 1.7"

@@ -187,6 +187,25 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ---
 
+## 🏗️ Para Desenvolvedores e Contribuidores
+
+### Testando a Documentação Localmente
+
+O site de documentação em `docs/` é construído com Jekyll. Para testar suas alterações localmente antes de commitar:
+
+1.  **Instale o Ruby e o Bundler:** Siga o [guia oficial](https://jekyllrb.com/docs/installation/) para o seu sistema operacional.
+2.  **Instale as dependências do Gemfile:**
+    ```bash
+    bundle install
+    ```
+3.  **Inicie o servidor de desenvolvimento do Jekyll:**
+    ```bash
+    bundle exec jekyll serve --livereload
+    ```
+    O site estará disponível em `http://localhost:4000`. O `--livereload` atualiza a página automaticamente sempre que você salva um arquivo.
+
+---
+
 ## 👨‍💻 Informações do Desenvolvedor
 
 **Julio Okuda**

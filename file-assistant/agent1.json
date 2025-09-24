@@ -1,11 +1,11 @@
 {
-  "model": "Qwen3-4B-GGUF",
+  "model": "user.qwen-4b",
   "endpointUrl": "http://localhost:8000/api/",
   "servers": [
     {
       "type": "stdio",
       "config": {
-        "command": "/home/jcnok/.nvm/versions/node/v18.20.3/bin/npx",
+        "command": "/CAMINHO/DO/NPX",
         "args": [
           "-y",
           "@wonderwhy-er/desktop-commander"

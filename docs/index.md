@@ -1,82 +1,40 @@
 ---
 layout: default
-title: AI HR Talent Analyzer
-description: AI-powered HR tool for job-candidate compatibility analysis using local LLM models
+title: Visão Geral
 ---
 
-# 🤖 AI HR Talent Analyzer
+O **AI HR Talent Analyzer** é uma ferramenta de código aberto projetada para revolucionar a análise de talentos, trazendo o poder dos Grandes Modelos de Linguagem (LLMs) diretamente para o seu ambiente local.
 
-<div align="center">
-  <img src="https://img.shields.io/badge/python-v3.11+-blue.svg" alt="Python">
-  <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License">
-  <img src="https://img.shields.io/badge/MCP-Model_Context_Protocol-orange.svg" alt="MCP">
-  <img src="https://img.shields.io/badge/AI-Local_LLM-green.svg" alt="AI">
-</div>
+Em um mundo onde a privacidade de dados é primordial, este projeto oferece uma solução segura para que equipes de Recursos Humanos e gerentes de contratação possam analisar descrições de vagas e currículos de candidatos sem nunca expor informações sensíveis a serviços de API de terceiros.
 
-## 🎯 Overview
+## 🎯 Objetivo Principal
 
-AI HR Talent Analyzer é uma ferramenta de análise de recursos humanos que utiliza modelos de linguagem locais para processar vagas e currículos, mantendo total privacidade dos dados.
+O objetivo central é fornecer uma ferramenta de análise de RH que seja:
 
-## 🚀 Quick Start
+- ✅ **100% Local e Privada:** Todos os dados são processados na sua máquina. Nenhuma informação de vaga ou candidato sai do seu controle.
+- 🧠 **Inteligente:** Utiliza LLMs para entender o contexto e as nuances tanto das descrições de vagas quanto dos currículos, fornecendo análises de compatibilidade que vão além da simples correspondência de palavras-chave.
+- 🤖 **Automatizada:** Automatiza tarefas repetitivas, como a triagem inicial de currículos e a criação de convites de entrevista personalizados.
+- ⚡ **Eficiente:** Otimizada para rodar com modelos de linguagem leves (GGUF), permitindo que funcione em hardware de desktop comum sem a necessidade de GPUs caras.
+- 🔗 **Protocolo Padrão:** Construída sobre o **Model Context Protocol (MCP)**, garantindo uma comunicação padronizada e robusta com os modelos de linguagem.
 
-1. **Clone o repositório**
-   ```bash
-   git clone https://github.com/Jcnok/ai-hr-talent-analyzer.git
-   cd ai-hr-talent-analyzer
-   ```
+## ✨ Funcionalidades
 
-2. **Configure o ambiente**
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # Linux/macOS
-   # OU .venv\Scripts\activate  # Windows
-   pip install -r requirements.txt
-   ```
+- **Análise de Vagas:** Extração inteligente de requisitos, responsabilidades e qualificações de um arquivo de descrição de vaga.
+- **Análise de Candidatos:** Processamento automático de currículos para extrair experiência, habilidades e formação.
+- **Matching de Compatibilidade:** Geração de análises detalhadas sobre o quão bem um candidato se encaixa em uma vaga.
+- **Geração de Convites:** Criação automática de convites de entrevista em markdown, personalizados com o nome do candidato.
+- **Interação Flexível:** Comunique-se com o agente usando linguagem natural para ler arquivos, fazer perguntas e gerar documentos.
 
-3. **Inicie os serviços**
-   ```bash
-   # Terminal 1
-   lemonade-server-dev serve
-   
-   # Terminal 2  
-   tiny-agents run agent.json
-   ```
+## 🛠️ Tecnologias Utilizadas
 
-## 📚 Documentation
-
-- [Installation Guide](installation.html)
-- [API Reference](api.html)
-- [Usage Examples](examples.html)
-- [Troubleshooting](troubleshooting.html)
-
-## ✨ Features
-
-- 🔒 **100% Local Processing** - Complete data privacy
-- 🤖 **AI-Powered Analysis** - Intelligent job-candidate matching
-- 📊 **Compatibility Scoring** - Automated resume screening
-- 💌 **Auto-Generated Invites** - Interview invitation creation
-- 🚀 **MCP Integration** - Model Context Protocol support
-- ⚡ **Lightweight Models** - Jan-Nano, Qwen3-4B support
-
-## 🛠️ Tech Stack
-
-| Component | Technology |
-|-----------|------------|
-| **Language** | Python 3.11+ |
-| **Framework** | Lemonade SDK 8.0.3 |
-| **Models** | Hugging Face Hub |
-| **Protocol** | MCP (Model Context Protocol) |
-| **Optimization** | GGUF Models |
-
-## 🔗 Links
-
-- [GitHub Repository](https://github.com/Jcnok/ai-hr-talent-analyzer)
-- [Report Issues](https://github.com/Jcnok/ai-hr-talent-analyzer/issues)
-- [Contribute](https://github.com/Jcnok/ai-hr-talent-analyzer/pulls)
+| Componente | Tecnologia | Propósito |
+| :--- | :--- | :--- |
+| **Linguagem** | Python 3.11+ | Base do projeto |
+| **Framework de Agentes** | Lemonade SDK | Fornece a infraestrutura para rodar o servidor de modelos |
+| **Modelos** | Hugging Face Hub | Fonte para download de modelos GGUF |
+| **Protocolo** | MCP | Padrão de comunicação com os modelos |
+| **Otimização de Modelos**| GGUF | Formato de arquivo que permite a execução eficiente de LLMs na CPU |
 
 ---
 
-<div align="center">
-  <p><strong>⭐ Star this project if it helped you!</strong></p>
-</div>
-```
+> 🚀 **Pronto para começar?** Vá para o nosso **[Guia de Instalação](installation.html)** para configurar o ambiente.
