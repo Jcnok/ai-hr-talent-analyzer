@@ -2,9 +2,10 @@
 
 <div align="center">
 
-![Python](https://img.shields.io/badge/python-v3.11+-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Status](https://img.shields.io/badge/status-active-success.svg)
+[![Python](https://img.shields.io/badge/python-v3.11+-blue.svg)](https://www.python.org/downloads/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/status-active-success.svg)](https://github.com/Jcnok/ai-hr-talent-analyzer)
+[![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-blue.svg)](https://jcnok.github.io/ai-hr-talent-analyzer/)
 
 </div>
 
@@ -22,189 +23,151 @@ Criar uma ferramenta de análise de recursos humanos que:
 - 🤖 Automatiza a criação de convites de entrevista
 - ⚡ Utiliza modelos de linguagem leves e eficientes
 
-## 🚀 Funcionalidades
+---
 
-- **Análise de Vagas**: Processamento inteligente de descrições de vagas
-- **Análise de Candidatos**: Avaliação automática de currículos
-- **Compatibilidade**: Matching entre vagas e candidatos
-- **Geração de Convites**: Criação automática de convites de entrevista
-- **Processamento Local**: Sem dependência de APIs externas
-- **Privacidade Total**: Dados nunca deixam seu ambiente
+## 🚀 Comece a Usar em 5 Minutos
 
-## 🛠️ Tecnologias Utilizadas
+Siga os passos abaixo para ter o ambiente funcionando.
 
-- **Python 3.11+**
-- **Lemonade SDK 8.0.3** - Framework para agentes inteligentes
-- **Hugging Face Hub 0.33.0** - Acesso a modelos de linguagem
-- **MCP (Model Context Protocol)** - Protocolo de contexto para modelos
-- **FastAPI** - Framework web moderno e rápido
-- **Pydantic** - Validação de dados
-- **ONNX** - Otimização de modelos de ML
+### 1. Pré-requisitos
 
-## 📦 Instalação
+- **Git**: [Instale aqui](https://git-scm.com/downloads)
+- **Python 3.11+**: [Instale aqui](https://www.python.org/downloads/)
+- **Node.js (com npx)**: [Instale aqui](https://nodejs.org/)
 
-### Pré-requisitos
+### 2. Instalação Automatizada
 
-- Python 3.11 ou superior
-- pip (gerenciador de pacotes Python)
-- Git
+Nós fornecemos scripts para uma configuração rápida e livre de erros.
 
-### Passo a Passo
+1.  **Clone o repositório:**
+    ```bash
+    git clone https://github.com/Jcnok/ai-hr-talent-analyzer.git
+    cd ai-hr-talent-analyzer
+    ```
+2.  **Execute o script de setup para o seu sistema:**
 
-1. **Clone o repositório**
-```bash
-git clone https://github.com/Jcnok/ai-hr-talent-analyzer.git
-cd curso-mcp
-```
+    *   **Linux / macOS (usando Terminal):**
+        ```bash
+        # Dê permissão de execução ao script
+        chmod +x ./scripts/setup.sh
 
-2. **Crie um ambiente virtual**
-```bash
-python -m venv .venv
-```
+        # Execute o script
+        ./scripts/setup.sh
+        ```
 
-3. **Ative o ambiente virtual**
+    *   **Windows (usando PowerShell como Administrador):**
+        ```powershell
+        # Permite a execução de scripts para esta sessão
+        Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
 
-**Windows:**
-```bash
-.venv\Scripts\activate
-```
+        # Execute o script
+        .\scripts\setup.ps1
+        ```
+    O script cuidará de tudo: criará o ambiente virtual, instalará as dependências e verificará a instalação.
 
-**Linux/macOS:**
-```bash
-source .venv/bin/activate
-```
+<details>
+<summary>👉 Prefere a instalação manual? Clique para expandir</summary>
 
-4. **Instale as dependências**
-```bash
-pip install --upgrade pip
-pip install -r requirements.txt
-```
+1.  **Crie um ambiente virtual:**
+    ```bash
+    python -m venv .venv
+    ```
+2.  **Ative o ambiente:**
+    *   **Windows:** `.venv\Scripts\activate`
+    *   **Linux/macOS:** `source .venv/bin/activate`
+3.  **Instale as dependências:**
+    ```bash
+    pip install --upgrade pip
+    pip install -r requirements.txt
+    ```
+4.  **Verifique a instalação:**
+    ```bash
+    python -c "import lemonade, huggingface_hub, typer, mcp, aiohttp; print('✅ Sucesso!')"
+    ```
 
-5. **Verifique a instalação**
-```bash
-python -c "import lemonade, huggingface_hub, typer, mcp, aiohttp; print('✅ Todas as dependências principais importadas com sucesso')"
-```
+</details>
 
-Se você vir a mensagem de sucesso, a instalação foi concluída corretamente!
+### 3. Configure e Inicie o Servidor de Modelos
 
-## 🎮 Como Usar
+1.  **Inicie o Lemonade Server** em um terminal separado. Ele ficará rodando em segundo plano.
+    ```bash
+    # Ative o ambiente virtual primeiro, se não estiver ativo
+    # Linux/macOS: source .venv/bin/activate
+    # Windows: .venv\Scripts\activate
 
-### Pré-requisitos Adicionais
+    lemonade-server-dev serve
+    ```
+2.  **Adicione um Modelo GGUF:**
+    *   Acesse a interface em **[http://localhost:8000](http://localhost:8000/#model-management)**.
+    *   Clique em **"Add Model"** e preencha:
+        *   **Name**: `user.jan-nano` (ou o nome que preferir).
+        *   **Checkpoint**: Use um modelo do Hugging Face, como `Menlo/Jan-nano-gguf:jan-nano-4b-Q4_0.gguf`, ou o caminho para um arquivo `.gguf` local.
+        *   **Recipe**: `llamacpp`.
+    *   Clique em **Install**.
 
-Antes de começar, certifique-se de ter:
-- Node.js instalado
-- Um modelo GGUF (recomendado: Jan-Nano ou Qwen3-4B)
+### 4. Configure o Agente
 
-### Passo a Passo Completo
+Os arquivos `agent.json` e `agent1.json` já estão pré-configurados. Você só precisa ajustar o caminho do `npx`.
 
-#### 1. Instale Node.js
-Baixe e instale em: https://nodejs.org/
+1.  **Encontre o caminho do `npx`:**
+    *   **Windows (PowerShell):** `where.exe npx`
+    *   **Linux/macOS:** `which npx`
+2.  **Atualize o `agent.json`:**
+    *   Abra o arquivo `agent.json`.
+    *   No campo `"command"`, substitua `"/CAMINHO/DO/NPX"` pelo caminho completo que você encontrou.
+    *   **Exemplo Windows:** `"C:\\Program Files\\nodejs\\npx.cmd"` (note as barras duplas).
+    *   **Exemplo Linux:** `"/home/user/.nvm/versions/node/v20.10.0/bin/npx"`.
 
-#### 2. Localize o caminho do npx
+### 5. Execute o Agente
 
-**WSL2/Linux:**
-```bash
-which npx
-```
+Use nossos scripts de execução que verificam se o ambiente está pronto antes de iniciar.
 
-**Windows:**
-```powershell
-where npx
-```
+*   **Linux / macOS (usando Terminal):**
+    ```bash
+    # Dê permissão de execução ao script (apenas na primeira vez)
+    chmod +x ./scripts/run.sh
 
-Guarde esta informação, você precisará dela no passo 6.
+    # Execute o agente
+    ./scripts/run.sh
+    ```
 
-#### 3. Inicie o Lemonade Server
-```bash
-lemonade-server-dev serve
-```
+*   **Windows (usando PowerShell):**
+    ```powershell
+    # Permite a execução de scripts para esta sessão (se necessário)
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
 
-⚠️ **Importante**: Deixe esta janela aberta durante todo o uso do sistema.
+    # Execute o agente
+    .\scripts\run.ps1
+    ```
+✅ **Sucesso!** O agente será iniciado e mostrará as ferramentas disponíveis.
 
-Acesse a interface em: http://localhost:8000/#model-management
+---
 
-#### 4. Adicione o Modelo GGUF
+## 🎮 Exemplos de Uso
 
-Na interface do Lemonade:
-1. Clique em **"Add Model"**
-2. Preencha os campos:
-   - **Name**: `user.jan-nano`
-   - **Checkpoint**: Caminho local para o modelo .gguf 
-     - Use esse da huggingface: `Menlo/Jan-nano-gguf:jan-nano-4b-Q4_0.gguf`
-   - **Recipe**: `llamacpp`
-3. Clique em Install
-   
-💡 **Dica**: Modelos "nano" e "qwen3-4b" são os mais leves para testes funcionais.
+Depois de iniciar o agente, você pode interagir com ele em linguagem natural.
 
-#### 5. Use o exemplo:
+> **⚠️ Dica Importante**: Para modelos menores (como Jan-Nano), seja muito específico e direto sobre qual ferramenta usar.
 
-```bash
-cd file-assistant
-```
-#### 6. Configure o agent.json
-
-Crie o arquivo `agent.json` com o seguinte conteúdo:
-
-```json
-{
-  "model": "user.jan-nano",
-  "endpointUrl": "http://localhost:8000/api/",
-  "servers": [
-    {
-      "type": "stdio",
-      "config": {
-        "command": "/CAMINHO/DO/NPX",
-        "args": ["-y", "@wonderwhy-er/desktop-commander"]
-      }
-    }
-  ]
-}
-```
-
-**Substitua `/CAMINHO/DO/NPX` pelo caminho obtido no passo 2:**
-
-**Exemplos:**
-- **Linux**: `"/home/seuuser/.nvm/versions/node/vXX/bin/npx"`
-- **Windows**: `"C:\\Program Files\\nodejs\\npx.cmd"`
-
-#### 7. Execute o Agente Tiny via MCP
-
-```bash
-tiny-agents run agent.json
-```
-
-✅ **Sucesso**: O agente mostrará as ferramentas disponíveis: `read_file`, `write_file`, entre outras.
-
-### 🎯 Exemplos Práticos Testados
-
-> **⚠️ Importante**: Para modelos menores (como Jan-Nano), seja específico sobre qual ferramenta usar. Use comandos diretos e claros.
-
-#### A) Ler Arquivo da Vaga
+#### A) Ler a Descrição da Vaga
 ```text
 use only tool read_file to read job_description.md
 ```
 
-#### B) Ler Currículo do Candidato
+#### B) Ler o Currículo do Candidato
 ```text
 use only tool read_file to read candidates/john_resume.md
 ```
 
-#### C) Análise de Compatibilidade
-**Primeiro, certifique-se de ter lido os arquivos necessários, depois pergunte:**
+#### C) Analisar Compatibilidade
+*Primeiro, certifique-se de que o agente leu os dois arquivos acima.*
 ```text
-John Doe atende aos requisitos da vaga? Responda se ele é adequado para o cargo?
+John Doe atende aos requisitos da vaga? Responda se ele é adequado para o cargo.
 ```
 
-💡 **Como funciona**: O modelo LLM usa o contexto dos arquivos lidos anteriormente para gerar a análise.
-
-#### D) Criar Convite de Entrevista (Comando Testado com Sucesso)
+#### D) Criar um Convite de Entrevista
 ```text
-use only a tool write_file to create invite.md with interview invitation for John Doe
-```
-
-**Comando alternativo mais específico:**
-```text
-use tool write_file to create invite.md with interview invitation for John Doe
+use only a tool write_file to create invite.md with an interview invitation for John Doe
 ```
 
 #### E) Verificar o Convite Criado
@@ -212,155 +175,55 @@ use tool write_file to create invite.md with interview invitation for John Doe
 use tool read_file to read invite.md
 ```
 
-### 🔄 Fluxo de Trabalho Resumido
-
-1. **Leitura**: Use `read_file` para carregar dados do sistema local
-2. **Análise**: Faça perguntas em linguagem natural para comparar requisitos
-3. **Geração**: Use `write_file` para criar documentos automáticos
-4. **Verificação**: Confira os resultados com `read_file`
-
-**Resultado**: Análise rápida, assertiva e 100% local — sem exposição de dados!
-
-### 💡 Dicas para Execução Assertiva
-
-- ✅ Sempre confira se está no diretório correto (`file-assistant`)
-- ✅ Garanta que o Lemonade está rodando sem erros na interface
-- ✅ Use comandos diretos (`read_file`, `write_file`) para garantir funcionamento
-- ✅ Para análises complexas, sempre leia os arquivos primeiro
-- ✅ O sistema aceita comandos em português livre 
-- ✅ Você pode pedir para resumir, corrigir ou detalhar informações
-- ✅ Dependendo o hardware o modelo pode dermorar para responder algumas perguntas
-
-  
-
-### 🔧 Comandos Úteis Adicionais
-
-**Listar arquivos disponíveis:**
-```text
-Quais arquivos estão disponíveis no diretório atual?
-```
-
-**Criar novos arquivos de análise:**
-```text
-write_file analise_completa.md "Análise detalhada do candidato John Doe"
-```
-
-**Editar arquivos existentes:**
-```text
-Como posso melhorar o convite de entrevista?
-```
+---
 
 ## 📁 Estrutura do Projeto
 
 ```
-curso-mcp/
-├── .venv/                  # Ambiente virtual
-├── .python-version         # Versão do Python
+ai-hr-talent-analyzer/
+├── .venv/                  # Ambiente virtual (criado pelo setup)
+├── scripts/                # Scripts de automação
+│   ├── setup.sh            # Script de instalação para Linux/macOS
+│   ├── setup.ps1           # Script de instalação para Windows
+│   ├── run.sh              # Script de execução para Linux/macOS
+│   └── run.ps1             # Script de execução para Windows
+├── candidates/             # Pasta com exemplos de currículos
+├── docs/                   # Documentação para GitHub Pages
+├── .python-version         # Versão do Python (para pyenv)
 ├── requirements.in         # Dependências principais
-├── requirements.txt        # Dependências compiladas
-├── agent.json             # Configuração do agente
-├── job_description.md     # Exemplo de descrição de vaga
-├── candidates/            # Pasta com currículos
-│   └── john_resume.md     # Exemplo de currículo
-├── invite.md              # Convite gerado
-└── README.md              # Este arquivo
+├── requirements.txt        # Dependências travadas
+├── agent.json              # Configuração do agente (modelo Jan-Nano)
+├── agent1.json             # Configuração alternativa (modelo Qwen)
+└── README.md               # Este arquivo
 ```
 
-## 🧪 Executando Testes
+---
 
-Para verificar se tudo está funcionando corretamente:
+## 🔧 Solução de Problemas Comuns
 
-1. **Teste de importação das dependências:**
-```bash
-python -c "import lemonade, huggingface_hub, typer, mcp, aiohttp; print('✅ Teste passou!')"
-```
-
-2. **Teste do ambiente virtual:**
-```bash
-pip list | grep -E "(lemonade|huggingface|mcp)"
-```
-
-3. **Teste do agente:**
-```bash
-tiny-agents --help
-```
-
-## 🔧 Desenvolvimento
-
-### Atualizando Dependências
-
-Para adicionar novas dependências:
-
-1. Edite o arquivo `requirements.in`
-2. Execute:
-```bash
-pip-compile requirements.in
-pip install -r requirements.txt
-```
-
-### Verificando Dependências Não Utilizadas
-
-```bash
-deptry .
-```
-
-## 🐛 Solução de Problemas
-
-#### Problema: Comando não é executado
-**Solução**: Seja mais específico sobre a ferramenta:
-```text
-❌ write_file invite.md "conteúdo"
-✅ use only a tool write_file to create invite.md with interview invitation
-```
-
-#### Problema: Análise sem contexto
-**Solução**: Sempre leia os arquivos primeiro:
-```text
-1. use tool read_file to read job_description.md
-2. use tool read_file to read candidates/john_resume.md  
-3. O candidato atende aos requisitos da vaga?
-```
-
-#### Problema: Resposta genérica
-**Solução**: Use comandos mais diretos e específicos:
-```text
-❌ "Crie um convite"
-✅ "use only a tool write_file to create invite.md com convite para John Doe"
-```
-
-### 📋 Checklist de Execução
-
-- [ ] Lemonade Server rodando em http://localhost:8000
-- [ ] Modelo carregado corretamente na interface
-- [ ] Arquivos de exemplo criados (job_description.md, john_resume.md)
-- [ ] agent.json configurado com caminho correto do npx
-- [ ] Comandos específicos usando "use tool [nome] to [ação]"
-- [ ] Arquivos lidos antes de fazer análises
-- [ ] Verificação dos arquivos criados
-
-## 📚 Recursos Adicionais
-
-- [Documentação do Lemonade SDK](https://docs.lemonade.ai/)
-- [Hugging Face Hub](https://huggingface.co/docs/huggingface_hub)
-- [Model Context Protocol](https://modelcontextprotocol.io/)
+- **Erro de `command not found` ao rodar scripts:** Verifique se você deu permissão de execução (`chmod +x`) no Linux/macOS ou se ajustou a `ExecutionPolicy` no PowerShell.
+- **Agente não responde ou dá erro:** Garanta que o **Lemonade Server está rodando** no outro terminal.
+- **Análise incorreta:** Lembre-se de usar `read_file` para carregar a vaga e o currículo no contexto do modelo **antes** de fazer a pergunta de análise.
 
 ## 🤝 Contribuindo
 
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
+Contribuições são bem-vindas! Sinta-se à vontade para abrir um Pull Request.
+
+1. Faça um fork do projeto.
+2. Crie uma branch para sua feature (`git checkout -b feature/MinhaFeature`).
+3. Commit suas mudanças (`git commit -m 'Adiciona MinhaFeature'`).
+4. Faça o push (`git push origin feature/MinhaFeature`).
+5. Abra um Pull Request.
 
 ## 📄 Licença
 
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ## 🙏 Agradecimentos
 
-- Equipe do Hugging Face pela infraestrutura de modelos
-- Comunidade Python pelo ecossistema robusto
-- Contribuidores do projeto Lemonade SDK
+- Equipe do Hugging Face pela infraestrutura de modelos.
+- Comunidade Python pelo ecossistema robusto.
+- Contribuidores do projeto Lemonade SDK.
 
 ---
 
