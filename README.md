@@ -41,9 +41,18 @@ O Docker irá construir a imagem, baixar as dependências e iniciar o servidor d
 
 ### 3. Primeiros Passos com Docker
 
-- **Acesse a Interface do Lemonade:** Para adicionar ou gerenciar seus modelos, abra o navegador e acesse **[http://localhost:8000](http://localhost:8000/#model-management)**.
-- **Use o Agente:** O terminal onde você executou `docker-compose up` se tornará a sua janela de chat com o agente.
-- **Para encerrar:** Pressione `Ctrl + C` no terminal. Para remover os contêineres, execute `docker-compose down`.
+Após executar `docker-compose up`, o processo ocorrerá em duas etapas:
+
+1.  **Instale o Modelo LLM:**
+    *   O terminal do agente mostrará uma mensagem "⏳ Modelo 'user.jan-nano' ainda não encontrado." e ficará em modo de espera.
+    *   Enquanto ele espera, abra seu navegador e acesse a interface do Lemonade em **[http://localhost:8000](http://localhost:8000/#model-management)**.
+    *   Clique em **"Add Model"** e instale o modelo `user.jan-nano` (ou outro de sua preferência, ajustando o `agent.docker.json`).
+
+2.  **Use o Agente:**
+    *   Assim que o modelo for instalado, o terminal do agente irá detectá-lo automaticamente, exibirá a mensagem "✅ Modelo detectado!" e iniciará o agente.
+    *   A partir desse momento, o terminal se tornará sua janela de chat interativa com o agente.
+
+- **Para encerrar:** Pressione `Ctrl + C` no terminal. Para remover os contêineres e o volume de dados, execute `docker-compose down -v`.
 
 ---
 

@@ -7,9 +7,12 @@ ENV PYTHONUNBUFFERED=1
 # Define o diretório de trabalho dentro do contêiner
 WORKDIR /app
 
-# Atualiza os pacotes do sistema operacional e instala o Node.js e o npm (que inclui o npx)
+# Atualiza os pacotes do sistema operacional e instala as dependências necessárias:
+# - nodejs e npm: para o npx
+# - curl: para verificar a API
+# - jq: para processar a resposta JSON da API
 # O `-y` confirma a instalação automaticamente.
-RUN apt-get update && apt-get install -y nodejs npm curl
+RUN apt-get update && apt-get install -y nodejs npm curl jq
 
 # Copia os arquivos de dependências para o diretório de trabalho
 COPY requirements.txt requirements.in ./
@@ -21,5 +24,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 # O .dockerignore garantirá que arquivos desnecessários não sejam incluídos.
 COPY . .
 
-# O comando para iniciar a aplicação será definido no docker-compose.yml,
-# pois teremos diferentes comandos para o servidor e para o agente.
+# Copia o script de entrypoint e o torna executável
+COPY entrypoint.sh .
+RUN chmod +x entrypoint.sh
+
+# Define o script de entrypoint como o ponto de entrada do contêiner.
+# O comando a ser executado (CMD) será passado pelo docker-compose.yml.
+ENTRYPOINT ["./entrypoint.sh"]

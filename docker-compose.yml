@@ -20,8 +20,8 @@ services:
     container_name: agent
     # Define o diretório de trabalho para onde estão os arquivos do agente
     working_dir: /app/file-assistant
-    # O comando para iniciar o agente, usando a configuração específica do Docker
-    command: tiny-agents run agent.docker.json
+    # O comando a ser executado pelo entrypoint.sh após o modelo ser detectado.
+    command: ["tiny-agents", "run", "agent.docker.json"]
     depends_on:
       # Garante que o agente só iniciará depois que o servidor estiver pronto
       - lemonade-server
