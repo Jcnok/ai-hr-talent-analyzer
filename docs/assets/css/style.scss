@@ -1,67 +1,108 @@
-@import "{{ site.theme }}";
+@import 'minima';
 
-/* Custom styles */
-.container-lg {
-  max-width: 1012px;
-  margin: 0 auto;
+/* Custom styles for AI HR Talent Analyzer */
+
+/* Header improvements */
+.site-header {
+  border-bottom: 2px solid #2a7ae4;
+  padding: 1rem 0;
 }
 
-header {
-  text-align: center;
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #e1e4e8;
+.site-title {
+  font-size: 1.8rem !important;
+  font-weight: bold;
+  color: #2a7ae4 !important;
+  text-decoration: none !important;
 }
 
-nav {
-  margin-top: 1rem;
-  font-size: 1.1rem;
+.site-title:hover {
+  color: #1a5fb4 !important;
 }
 
-nav a {
-  color: #0366d6;
-  text-decoration: none;
+/* Navigation */
+.site-nav .page-link {
+  color: #2a7ae4;
   margin: 0 0.5rem;
+  font-weight: 500;
 }
 
-nav a:hover {
+.site-nav .page-link:hover {
+  color: #1a5fb4;
   text-decoration: underline;
 }
 
-.footer {
-  margin-top: 3rem;
-  text-align: center;
-  color: #586069;
-  font-size: 0.9rem;
+/* Main content */
+.page-content {
+  padding: 2rem 0;
 }
 
 /* Code blocks */
+pre,
+code {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 4px;
+}
+
 pre {
-  background-color: #f6f8fa;
-  border-radius: 6px;
   padding: 1rem;
   overflow-x: auto;
+}
+
+code {
+  padding: 0.2em 0.4em;
+  font-size: 87.5%;
 }
 
 /* Tables */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 1rem 0;
+  margin: 1.5rem 0;
 }
 
-th, td {
-  border: 1px solid #d0d7de;
-  padding: 0.5rem 1rem;
+th,
+td {
+  border: 1px solid #dee2e6;
+  padding: 0.75rem;
   text-align: left;
 }
 
 th {
-  background-color: #f6f8fa;
+  background-color: #f8f9fa;
   font-weight: 600;
 }
 
-/* Badges */
-img[alt="Python"], img[alt="License"], img[alt="MCP"], img[alt="AI"] {
-  margin: 0 0.25rem;
+/* Badges/Images alignment */
+.markdown-body img {
+  margin: 0.25rem;
+}
+
+/* Buttons and links */
+a {
+  color: #2a7ae4;
+}
+
+a:hover {
+  color: #1a5fb4;
+}
+
+/* Responsive improvements */
+@media screen and (max-width: 600px) {
+  .site-nav {
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .site-nav .page-link {
+    display: inline-block;
+    margin: 0.25rem;
+  }
+}
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid #e8e8e8;
+  padding: 2rem 0;
+  color: #666;
 }
