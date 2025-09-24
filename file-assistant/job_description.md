@@ -1,23 +1,26 @@
-# Senior Food Technology Engineer
+# Vaga: Engenheiro de Software Backend
 
-## About the Role
-We're seeking a culinary innovator to transform cooking processes into precise algorithms and AI systems.
+### Sobre a Empresa
+Somos uma startup de tecnologia em rápido crescimento, focada em criar soluções inovadoras para o mercado financeiro.
 
-## What You'll Do
-- Convert cooking instructions into measurable algorithms
-- Develop AI-powered kitchen tools
-- Create food quality assessment systems
-- Build recipe-following AI models
+### Descrição da Posição
+Estamos procurando um Engenheiro de Software Backend talentoso para se juntar à nossa equipe. O candidato ideal terá uma forte paixão por tecnologia e um histórico comprovado no desenvolvimento de sistemas robustos e escaláveis.
 
-## Requirements
-- MS in Computer Science (food-related thesis preferred)
-- Python and PyTorch expertise
-- Proven experience combining food science with ML
-- Strong communication skills using culinary metaphors
+### Responsabilidades
+- Projetar, desenvolver e manter APIs RESTful de alta performance.
+- Escrever código limpo, testável e de fácil manutenção em **Python**.
+- Colaborar com equipes de frontend, produto e DevOps para entregar novas funcionalidades.
+- Otimizar aplicações para garantir velocidade e escalabilidade.
+- Participar de revisões de código e compartilhar conhecimento com a equipe.
 
-## Perks
-- Access to experimental kitchen
-- Continuous taste-testing opportunities
-- Collaborative tech-foodie team environment
+### Requisitos Essenciais
+- Mínimo de 3 anos de experiência em desenvolvimento backend.
+- Forte proficiência em **Python**.
+- Experiência com frameworks web como **FastAPI** ou Django.
+- Conhecimento sólido em bancos de dados relacionais (ex: **PostgreSQL**).
+- Experiência com Docker e sistemas de controle de versão (Git).
 
-*Note: Must attend conferences and publish on algorithmic cooking optimization.*
+### Qualificações Desejáveis
+- Experiência com computação em nuvem (AWS, GCP).
+- Conhecimento em CI/CD.
+- Experiência com metodologias ágeis.

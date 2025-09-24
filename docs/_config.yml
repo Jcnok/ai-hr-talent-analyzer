@@ -1,8 +1,11 @@
+# --- Configurações Principais do Site ---
 title: AI HR Talent Analyzer
-description: AI-powered HR tool for job-candidate compatibility analysis using local LLM models
-baseurl: "/ai-hr-talent-analyzer"
-url: "https://Jcnok.github.io"
+description: Documentação completa para o AI HR Talent Analyzer, uma ferramenta de RH para análise de vagas e currículos com LLMs locais.
+baseurl: "/ai-hr-talent-analyzer" # O subdiretório do seu site, e.g. /blog
+url: "https://Jcnok.github.io" # O domínio base do seu site
 
+# --- Tema e Plugins ---
+# O tema minima é um bom ponto de partida, mas os nossos estilos em assets/css/style.css irão sobrescrevê-lo.
 theme: minima
 
 plugins:
@@ -10,22 +13,27 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
 
+# --- Build settings ---
 markdown: kramdown
 highlighter: rouge
 
-header_pages:
-  - installation.md
-  - api.md
-  - examples.md
-  - troubleshooting.md
+# --- Informações do Autor e Social ---
+author:
+  name: Julio Okuda
+  email: julio.okuda@gmail.com
 
 social_links:
   github: Jcnok/ai-hr-talent-analyzer
 
-show_excerpts: true
+# A navegação foi movida para o arquivo _layouts/default.html para maior controle.
+# A seção 'header_pages' não é mais necessária aqui.
 
-google_analytics: # Add your GA tracking ID if you have one
-
-author:
-  name: Julio Okuda
-  email: julio.okuda@gmail.com
+# Excluir arquivos do build final
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
