@@ -1,0 +1,31 @@
+title: AI HR Talent Analyzer
+description: AI-powered HR tool for job-candidate compatibility analysis using local LLM models
+baseurl: "/ai-hr-talent-analyzer"
+url: "https://Jcnok.github.io"
+
+theme: minima
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+markdown: kramdown
+highlighter: rouge
+
+header_pages:
+  - installation.md
+  - api.md
+  - examples.md
+  - troubleshooting.md
+
+social_links:
+  github: Jcnok/ai-hr-talent-analyzer
+
+show_excerpts: true
+
+google_analytics: # Add your GA tracking ID if you have one
+
+author:
+  name: Julio Okuda
+  email: julio.okuda@gmail.com

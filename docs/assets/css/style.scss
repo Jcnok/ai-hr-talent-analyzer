@@ -1,0 +1,67 @@
+@import "{{ site.theme }}";
+
+/* Custom styles */
+.container-lg {
+  max-width: 1012px;
+  margin: 0 auto;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+nav {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+
+nav a {
+  color: #0366d6;
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.footer {
+  margin-top: 3rem;
+  text-align: center;
+  color: #586069;
+  font-size: 0.9rem;
+}
+
+/* Code blocks */
+pre {
+  background-color: #f6f8fa;
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+th, td {
+  border: 1px solid #d0d7de;
+  padding: 0.5rem 1rem;
+  text-align: left;
+}
+
+th {
+  background-color: #f6f8fa;
+  font-weight: 600;
+}
+
+/* Badges */
+img[alt="Python"], img[alt="License"], img[alt="MCP"], img[alt="AI"] {
+  margin: 0 0.25rem;
+}
