@@ -1,0 +1,16 @@
+{
+  "model": "Qwen3-4B-GGUF",
+  "endpointUrl": "http://localhost:8000/api/",
+  "servers": [
+    {
+      "type": "stdio",
+      "config": {
+        "command": "/home/jcnok/.nvm/versions/node/v18.20.3/bin/npx",
+        "args": [
+          "-y",
+          "@wonderwhy-er/desktop-commander"
+        ]
+      }
+    }
+  ]
+}

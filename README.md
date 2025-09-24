@@ -53,7 +53,7 @@ Criar uma ferramenta de análise de recursos humanos que:
 
 1. **Clone o repositório**
 ```bash
-git clone https://github.com/Jcnok/mcp-course-hf.git
+git clone https://github.com/Jcnok/ai-hr-talent-analyzer.git
 cd curso-mcp
 ```
 

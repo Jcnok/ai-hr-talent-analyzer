@@ -1,0 +1,1 @@
+Análise detalhada do candidato John Doe

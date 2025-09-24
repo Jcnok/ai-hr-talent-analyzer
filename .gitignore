@@ -324,10 +324,10 @@ models/
 checkpoints/
 
 # Generated files from examples
-file-assistant/
-invite.md
-analysis.md
-summary.md
+#file-assistant/
+#invite.md
+#analysis.md
+#summary.md
 
 # Agent configuration with sensitive paths
 # Uncomment if you want to ignore agent.json (recommended for security)
