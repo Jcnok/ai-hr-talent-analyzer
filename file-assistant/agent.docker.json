@@ -1,0 +1,16 @@
+{
+  "model": "user.jan-nano",
+  "endpointUrl": "http://lemonade-server:8000/api/",
+  "servers": [
+    {
+      "type": "stdio",
+      "config": {
+        "command": "/usr/bin/npx",
+        "args": [
+          "-y",
+          "@wonderwhy-er/desktop-commander"
+        ]
+      }
+    }
+  ]
+}
