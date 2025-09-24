@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  # Serviço para o Lemonade Server
+  lemonade-server:
+    build: .
+    container_name: lemonade-server
+    # O comando para iniciar o servidor, escutando em todas as interfaces de rede
+    command: lemonade-server-dev serve --host 0.0.0.0
+    ports:
+      # Mapeia a porta 8000 do contêiner para a porta 8000 da sua máquina
+      - "8000:8000"
+    volumes:
+      # Cria um volume para persistir os modelos baixados pelo Lemonade
+      - lemonade-data:/root/.lemonade
+
+  # Serviço para o Agente Interativo
+  agent:
+    build: .
+    container_name: agent
+    # Define o diretório de trabalho para onde estão os arquivos do agente
+    working_dir: /app/file-assistant
+    # O comando para iniciar o agente, usando a configuração específica do Docker
+    command: tiny-agents run agent.docker.json
+    depends_on:
+      # Garante que o agente só iniciará depois que o servidor estiver pronto
+      - lemonade-server
+    # Mantém o terminal interativo para que você possa conversar com o agente
+    stdin_open: true
+    tty: true
+    volumes:
+      # Monta o mesmo volume para garantir consistência e acesso aos dados do Lemonade
+      - lemonade-data:/root/.lemonade
+
+# Declara o volume nomeado para persistência dos dados
+volumes:
+  lemonade-data:

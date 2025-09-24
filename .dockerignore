@@ -1,0 +1,28 @@
+# Ignore o ambiente virtual
+.venv
+
+# Ignore os diretórios de cache do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore o diretório de build/distribuição do pip
+.eggs/
+*.egg-info/
+dist/
+build/
+
+# Ignore arquivos de configuração de IDE e sistema
+.vscode/
+.idea/
+.DS_Store
+
+# Ignore arquivos de log e outros artefatos
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore o diretório de downloads do lemonade
+.lemonade/downloads/
