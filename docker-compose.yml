@@ -5,10 +5,10 @@ services:
   lemonade-server:
     build: .
     container_name: lemonade-server
-    # Sobrescreve o entrypoint do Dockerfile para executar diretamente o servidor.
-    entrypoint: lemonade-server-dev
-    # Argumentos passados para o novo entrypoint.
-    command: ["serve", "--host", "0.0.0.0"]
+    # Anula o entrypoint do Dockerfile para este serviço, garantindo que apenas o 'command' seja executado.
+    entrypoint: []
+    # Comando completo para iniciar o servidor, executado como um shell para estabilidade.
+    command: "lemonade-server-dev serve --host 0.0.0.0"
     ports:
       # Mapeia a porta 8000 do contêiner para a porta 8000 da sua máquina
       - "8000:8000"
