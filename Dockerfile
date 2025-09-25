@@ -28,6 +28,6 @@ COPY . .
 COPY entrypoint.sh .
 RUN chmod +x entrypoint.sh
 
-# Define o script de entrypoint como o ponto de entrada do contêiner.
+# Define o script de entrypoint como o ponto de entrada do contêiner, usando seu caminho absoluto.
 # O comando a ser executado (CMD) será passado pelo docker-compose.yml.
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]
