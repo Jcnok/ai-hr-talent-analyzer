@@ -25,8 +25,13 @@ author:
 social_links:
   github: Jcnok/ai-hr-talent-analyzer
 
-# A navegação foi movida para o arquivo _layouts/default.html para maior controle.
-# A seção 'header_pages' não é mais necessária aqui.
+# Define as páginas que aparecerão no cabeçalho de navegação
+header_pages:
+  - index.md
+  - installation.md
+  - examples.md
+  - api.md
+  - troubleshooting.md
 
 # Excluir arquivos do build final
 exclude:
