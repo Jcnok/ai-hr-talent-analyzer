@@ -1,186 +1,76 @@
-/* --- Global Resets and Variables --- */
+/* --- Importa o estilo base do Minima --- */
+@import "minima";
+
+/* --- Sobrescreve as variáveis de cor para um tema dark --- */
 :root {
   --background-color: #121212;
   --text-color: #e0e0e0;
   --primary-color: #4CAF50; /* Green accent */
-  --header-color: #ffffff;
-  --border-color: #333;
+  --grey-color: #828282;
+  --grey-color-light: #333;
+  --grey-color-dark: #e0e0e0;
   --code-bg-color: #1e1e1e;
-  --code-text-color: #d4d4d4;
   --link-color: #68b6ef;
-  --sidebar-bg: #1a1a1a;
-  --sidebar-width: 260px;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  margin: 0;
-  padding: 0;
   background-color: var(--background-color);
   color: var(--text-color);
-  line-height: 1.6;
+  border-color: var(--grey-color-light);
 }
 
-/* --- Layout --- */
-.wrapper {
-  display: flex;
-  min-height: 100vh;
+.site-header {
+  border-top-color: var(--primary-color);
+  border-bottom-color: var(--grey-color-light);
 }
 
-.sidebar {
-  width: var(--sidebar-width);
-  background-color: var(--sidebar-bg);
-  border-right: 1px solid var(--border-color);
-  padding: 2rem 1.5rem;
-  position: fixed;
-  height: 100%;
-  overflow-y: auto;
+.site-title, .site-title:visited {
+  color: var(--grey-color-dark);
 }
 
-.main-content {
-  flex-grow: 1;
-  padding: 2rem 4rem;
-  margin-left: var(--sidebar-width);
-}
-
-/* --- Sidebar Styles --- */
-.sidebar-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--header-color);
-    margin-bottom: 2rem;
-}
-.sidebar-title a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.sidebar nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar nav li {
-  margin-bottom: 0.8rem;
-}
-
-.sidebar nav a {
+.site-nav .page-link {
   color: var(--text-color);
-  text-decoration: none;
-  font-size: 1rem;
-  transition: color 0.2s ease;
+}
+.site-nav .page-link:hover {
+    color: var(--primary-color);
 }
 
-.sidebar nav a:hover, .sidebar nav a.active {
-  color: var(--primary-color);
-  font-weight: bold;
+.post-link {
+    color: var(--link-color);
 }
 
-
-/* --- Typography --- */
 h1, h2, h3, h4, h5, h6 {
-  color: var(--header-color);
-  font-weight: 600;
-  margin-top: 2.5rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 0.5rem;
-}
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
-
-p {
-  margin-bottom: 1rem;
+  color: var(--grey-color-dark);
 }
 
-a {
+.post-content a {
+    color: var(--link-color);
+}
+
+.post-content a:visited {
+    color: #a78bfa; /* Visited link color */
+}
+
+/* --- Estilos para blocos de código --- */
+.highlight, pre, code {
+  background-color: var(--code-bg-color);
+  border: 1px solid var(--grey-color-light);
+  color: #f8f8f2; /* Light text for code */
+}
+
+/* --- Tabela de Conteúdo (TOC) customizada --- */
+.toc {
+  background-color: var(--code-bg-color);
+  border: 1px solid var(--grey-color-light);
+  border-radius: 5px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+}
+.toc ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+.toc li a {
   color: var(--link-color);
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
-
-strong {
-  font-weight: bold;
-}
-
-/* --- Code Blocks --- */
-pre, code, kbd, samp {
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  font-size: 0.95em;
-}
-
-pre {
-  background-color: var(--code-bg-color);
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  padding: 1rem;
-  overflow-x: auto;
-  margin-bottom: 1.5rem;
-}
-
-code {
-  background-color: var(--code-bg-color);
-  padding: 0.2em 0.4em;
-  margin: 0;
-  border-radius: 3px;
-}
-
-pre code {
-  padding: 0;
-  background-color: transparent;
-  border: none;
-}
-
-/* --- Other Elements --- */
-blockquote {
-  border-left: 4px solid var(--primary-color);
-  padding-left: 1rem;
-  margin-left: 0;
-  color: #ccc;
-  font-style: italic;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 1.5rem;
-}
-
-th, td {
-    padding: 0.8rem;
-    border: 1px solid var(--border-color);
-    text-align: left;
-}
-
-th {
-    background-color: var(--sidebar-bg);
-    font-weight: bold;
-}
-
-hr {
-    border: 0;
-    border-top: 1px solid var(--border-color);
-    margin: 2rem 0;
-}
-
-/* --- Responsiveness --- */
-@media (max-width: 768px) {
-  .wrapper {
-    flex-direction: column;
-  }
-  .sidebar {
-    width: 100%;
-    position: static;
-    height: auto;
-    border-right: none;
-    border-bottom: 1px solid var(--border-color);
-  }
-  .main-content {
-    margin-left: 0;
-    padding: 2rem 1.5rem;
-  }
 }

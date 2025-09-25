@@ -1,32 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }} | {{ site.title }}</title>
-    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
-</head>
-<body>
-    <div class="wrapper">
-        <aside class="sidebar">
-            <div class="sidebar-title">
-                <a href="{{ '/' | relative_url }}">🤖 {{ site.title }}</a>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="{% link index.md %}">Visão Geral</a></li>
-                    <li><a href="{% link installation.md %}">Instalação</a></li>
-                    <li><a href="{% link examples.md %}">Exemplos de Uso</a></li>
-                    <li><a href="{% link api.md %}">Configuração e Arquitetura</a></li>
-                    <li><a href="{% link troubleshooting.md %}">Solução de Problemas</a></li>
-                </ul>
-            </nav>
-        </aside>
-        <main class="main-content">
-            <h1>{{ page.title }}</h1>
-            {{ content }}
-        </main>
-    </div>
-</body>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+
+  {%- include head.html -%}
+
+  <body>
+
+    {%- include header.html -%}
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        {{ content }}
+      </div>
+    </main>
+
+    {%- include footer.html -%}
+
+  </body>
+
 </html>
