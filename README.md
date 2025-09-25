@@ -18,10 +18,9 @@ Este projeto demonstra a implementação e utilização do **Tiny Agents MCP** p
 
 ## 🚀 Comece a Usar em 2 Minutos com Docker (Recomendado)
 
-Este é o método mais simples e rápido. Ele elimina a necessidade de instalar Python ou Node.js na sua máquina.
+Este é o método mais simples e rápido. O modelo de linguagem já vem pré-instalado na imagem.
 
 ### 1. Pré-requisitos
-
 - **Git**: [Instale aqui](https://git-scm.com/downloads)
 - **Docker e Docker Compose**: [Instale aqui](https://docs.docker.com/get-docker/)
 
@@ -36,23 +35,9 @@ Este é o método mais simples e rápido. Ele elimina a necessidade de instalar 
     ```bash
     docker-compose up
     ```
+    > Na primeira vez, o Docker construirá a imagem, o que inclui o download do modelo LLM e pode levar alguns minutos.
 
-O Docker irá construir a imagem, baixar as dependências e iniciar o servidor de modelos e o agente interativo.
-
-### 3. Primeiros Passos com Docker
-
-Após executar `docker-compose up`, o processo ocorrerá em duas etapas:
-
-1.  **Instale o Modelo LLM:**
-    *   O terminal do agente mostrará uma mensagem "⏳ Modelo 'user.jan-nano' ainda não encontrado." e ficará em modo de espera.
-    *   Enquanto ele espera, abra seu navegador e acesse a interface do Lemonade em **[http://localhost:8000](http://localhost:8000/#model-management)**.
-    *   Clique em **"Add Model"** e instale o modelo `user.jan-nano` (ou outro de sua preferência, ajustando o `agent.docker.json`).
-
-2.  **Use o Agente:**
-    *   Assim que o modelo for instalado, o terminal do agente irá detectá-lo automaticamente, exibirá a mensagem "✅ Modelo detectado!" e iniciará o agente.
-    *   A partir desse momento, o terminal se tornará sua janela de chat interativa com o agente.
-
-- **Para encerrar:** Pressione `Ctrl + C` no terminal. Para remover os contêineres e o volume de dados, execute `docker-compose down -v`.
+✅ **É isso!** O terminal se tornará sua janela de chat com o agente. A interface do servidor estará disponível em `http://localhost:8001`.
 
 ---
 
@@ -61,115 +46,19 @@ Após executar `docker-compose up`, o processo ocorrerá em duas etapas:
 <details>
 <summary>👉 Clique aqui para ver as instruções de instalação local sem Docker.</summary>
 
-### 1. Pré-requisitos
+Este método requer a instalação manual do Python e do Node.js.
 
-- **Git**: [Instale aqui](https://git-scm.com/downloads)
-- **Python 3.11+**: [Instale aqui](https://www.python.org/downloads/)
-- **Node.js (com npx)**: [Instale aqui](https://nodejs.org/)
-
-### 2. Instalação Automatizada com Scripts
-
-1.  **Clone o repositório:**
-    ```bash
-    git clone https://github.com/Jcnok/ai-hr-talent-analyzer.git
-    cd ai-hr-talent-analyzer
-    ```
-2.  **Execute o script de setup para o seu sistema:**
-
-    *   **Linux / macOS (usando Terminal):**
-        ```bash
-        # Dê permissão de execução ao script
-        chmod +x ./scripts/setup.sh
-        # Execute o script
-        ./scripts/setup.sh
-        ```
-
-    *   **Windows (usando PowerShell como Administrador):**
-        ```powershell
-        # Permite a execução de scripts para esta sessão
-        Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
-        # Execute o script
-        .\scripts\setup.ps1
-        ```
-
-### 3. Configure e Inicie o Servidor de Modelos
-
-1.  **Inicie o Lemonade Server** em um terminal separado.
-    ```bash
-    # Ative o ambiente virtual primeiro
-    # Linux/macOS: source .venv/bin/activate
-    # Windows: .venv\Scripts\activate
-
-    lemonade-server-dev serve
-    ```
-2.  **Adicione um Modelo GGUF** na interface em **[http://localhost:8000](http://localhost:8000/#model-management)**.
-    *   **Name**: `user.jan-nano`
-    *   **Checkpoint**: `Menlo/Jan-nano-gguf:jan-nano-4b-Q4_0.gguf`
-    *   **Recipe**: `llamacpp`
-
-### 4. Configure o Agente
-
-1.  **Encontre o caminho do `npx`:**
-    *   **Windows:** `where.exe npx`
-    *   **Linux/macOS:** `which npx`
-2.  **Atualize o `file-assistant/agent.json`:** Substitua `"/CAMINHO/DO/NPX"` pelo caminho encontrado.
-
-### 5. Execute o Agente
-
-*   **Linux / macOS:**
-    ```bash
-    chmod +x ./scripts/run.sh
-    ./scripts/run.sh
-    ```
-*   **Windows (PowerShell):**
-    ```powershell
-    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
-    .\scripts\run.ps1
-    ```
+1.  **Siga o guia de instalação detalhado** na nossa [**página de documentação completa**](https://jcnok.github.io/ai-hr-talent-analyzer/installation).
 
 </details>
 
 ---
 
-## 🎮 Exemplos de Uso
+## 📚 Documentação Completa
 
-Após iniciar o agente (seja com Docker ou localmente), você pode interagir com ele em linguagem natural.
+Para guias detalhados, exemplos de uso e informações sobre a arquitetura do projeto, visite nosso site de documentação:
 
-> **⚠️ Dica Importante**: Para modelos menores (como Jan-Nano), seja muito específico e direto sobre qual ferramenta usar.
-
-#### A) Ler a Descrição da Vaga
-```text
-use only tool read_file to read job_description.md
-```
-
-#### B) Ler o Currículo do Candidato
-```text
-use only tool read_file to read candidates/john_resume.md
-```
-
-#### C) Analisar Compatibilidade
-*Primeiro, certifique-se de que o agente leu os dois arquivos acima.*
-```text
-John Doe atende aos requisitos da vaga? Responda se ele é adequado para o cargo.
-```
-
-#### D) Criar um Convite de Entrevista
-```text
-use only a tool write_file to create invite.md with an interview invitation for John Doe
-```
-
----
-
-## 📁 Estrutura do Projeto
-
-```
-ai-hr-talent-analyzer/
-├── file-assistant/         # Contém os arquivos do agente e exemplos
-├── scripts/                # Scripts de automação para setup local
-├── Dockerfile              # Receita para construir a imagem Docker
-├── docker-compose.yml      # Orquestrador dos serviços Docker
-└── README.md               # Este arquivo
-```
+**[https://jcnok.github.io/ai-hr-talent-analyzer/](https://jcnok.github.io/ai-hr-talent-analyzer/)**
 
 ---
 
@@ -177,32 +66,15 @@ ai-hr-talent-analyzer/
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir um Pull Request.
 
+### Testando a Documentação Localmente
+O site de documentação em `docs/` é construído com Jekyll.
+1.  Instale o Ruby e o Bundler.
+2.  Execute `bundle install` no diretório `docs/`.
+3.  Execute `bundle exec jekyll serve --livereload` no diretório `docs/`.
+
 ## 📄 Licença
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-## 🙏 Agradecimentos
-
-- Equipe do Hugging Face, comunidade Python e contribuidores do Lemonade SDK.
-
----
-
-## 🏗️ Para Desenvolvedores e Contribuidores
-
-### Testando a Documentação Localmente
-
-O site de documentação em `docs/` é construído com Jekyll. Para testar suas alterações localmente antes de commitar:
-
-1.  **Instale o Ruby e o Bundler:** Siga o [guia oficial](https://jekyllrb.com/docs/installation/) para o seu sistema operacional.
-2.  **Instale as dependências do Gemfile:**
-    ```bash
-    bundle install
-    ```
-3.  **Inicie o servidor de desenvolvimento do Jekyll:**
-    ```bash
-    bundle exec jekyll serve --livereload
-    ```
-    O site estará disponível em `http://localhost:4000`. O `--livereload` atualiza a página automaticamente sempre que você salva um arquivo.
+Este projeto está sob a licença MIT.
 
 ---
 

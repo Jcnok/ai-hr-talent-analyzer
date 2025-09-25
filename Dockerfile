@@ -24,10 +24,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # O .dockerignore garantirá que arquivos desnecessários não sejam incluídos.
 COPY . .
 
-# Copia o script de entrypoint e o torna executável
-COPY entrypoint.sh .
-RUN chmod +x entrypoint.sh
-
-# Define o script de entrypoint como o ponto de entrada do contêiner, usando seu caminho absoluto.
-# O comando a ser executado (CMD) será passado pelo docker-compose.yml.
-ENTRYPOINT ["/app/entrypoint.sh"]
+# Pré-instala o modelo LLM diretamente na imagem Docker.
+# Isso garante que o modelo esteja disponível imediatamente quando o contêiner iniciar.
+RUN lemonade-server-dev pull user.jan-nano --checkpoint Menlo/Jan-nano-gguf:jan-nano-4b-Q4_0.gguf --recipe llamacpp
