@@ -1,39 +1,31 @@
-version: '3.8'
-
+# A diretiva 'version' é obsoleta e removida para seguir as boas práticas.
 services:
   # Serviço para o Lemonade Server
   lemonade-server:
     build: .
     container_name: lemonade-server
-    # Anula o entrypoint do Dockerfile para este serviço, garantindo que apenas o 'command' seja executado.
-    entrypoint: []
-    # Comando completo para iniciar o servidor, executado como um shell para estabilidade.
-    command: "lemonade-server-dev serve --host 0.0.0.0"
+    # O comando agora é mais simples e usa a porta 8001.
+    command: ["lemonade-server-dev", "serve", "--port", "8001"]
     ports:
-      # Mapeia a porta 8000 do contêiner para a porta 8000 da sua máquina
-      - "8000:8000"
+      # Mapeia a porta 8001 do contêiner para a porta 8001 da sua máquina.
+      - "8001:8001"
     volumes:
-      # Cria um volume para persistir os modelos baixados pelo Lemonade
+      # O volume ainda é útil para persistir quaisquer outros modelos ou logs.
       - lemonade-data:/root/.lemonade
 
   # Serviço para o Agente Interativo
   agent:
     build: .
     container_name: agent
-    # Define o diretório de trabalho para onde estão os arquivos do agente
     working_dir: /app/file-assistant
-    # O comando a ser executado pelo entrypoint.sh após o modelo ser detectado.
+    # O comando do agente agora é mais simples, sem dependência de entrypoint.
     command: ["tiny-agents", "run", "agent.docker.json"]
     depends_on:
-      # Garante que o agente só iniciará depois que o servidor estiver pronto
+      # O agente ainda espera o servidor iniciar.
       - lemonade-server
-    # Mantém o terminal interativo para que você possa conversar com o agente
     stdin_open: true
     tty: true
-    volumes:
-      # Monta o mesmo volume para garantir consistência e acesso aos dados do Lemonade
-      - lemonade-data:/root/.lemonade
 
-# Declara o volume nomeado para persistência dos dados
+# Declara o volume nomeado para persistência dos dados.
 volumes:
   lemonade-data:
