@@ -1,31 +1,19 @@
-# A diretiva 'version' é obsoleta e removida para seguir as boas práticas.
 services:
-  # Serviço para o Lemonade Server
-  lemonade-server:
+  lemonade-app:
     build: .
-    container_name: lemonade-server
-    # O comando agora é mais simples e usa a porta 8001.
-    command: ["lemonade-server-dev", "serve", "--port", "8001"]
+    container_name: lemonade-app
     ports:
-      # Mapeia a porta 8001 do contêiner para a porta 8001 da sua máquina.
       - "8001:8001"
-    volumes:
-      # O volume ainda é útil para persistir quaisquer outros modelos ou logs.
-      - lemonade-data:/root/.lemonade
-
-  # Serviço para o Agente Interativo
-  agent:
-    build: .
-    container_name: agent
-    working_dir: /app/file-assistant
-    # O comando do agente agora é mais simples, sem dependência de entrypoint.
-    command: ["tiny-agents", "run", "agent.docker.json"]
-    depends_on:
-      # O agente ainda espera o servidor iniciar.
-      - lemonade-server
+    # volumes:  ← REMOVA ESTA LINHA
+    #   - lemonade-data:/root/.lemonade
     stdin_open: true
     tty: true
+    command: >
+      bash -c "
+        lemonade-server-dev serve --port 8001 &
+        sleep 5 &&
+        cd /app/file-assistant &&
+        tiny-agents run agent.docker.json
+      "
 
-# Declara o volume nomeado para persistência dos dados.
-volumes:
-  lemonade-data:
+# Sem seção volumes
