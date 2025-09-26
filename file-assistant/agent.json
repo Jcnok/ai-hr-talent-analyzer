@@ -1,11 +1,11 @@
 {
   "model": "user.jan-nano",
-  "endpointUrl": "http://localhost:8000/api/",
+  "endpointUrl": "http://localhost:8001/api/",
   "servers": [
     {
       "type": "stdio",
       "config": {
-        "command": "/CAMINHO/DO/NPX",
+        "command": "npx",
         "args": [
           "-y",
           "@wonderwhy-er/desktop-commander"

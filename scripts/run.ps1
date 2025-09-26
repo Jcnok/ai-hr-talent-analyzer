@@ -10,7 +10,7 @@ if (-not (Test-Path -Path ".venv")) {
 
 # Check if Lemonade server is running
 try {
-    $response = Invoke-WebRequest -Uri "http://localhost:8000/api/" -UseBasicParsing -TimeoutSec 5
+    $response = Invoke-WebRequest -Uri "http://localhost:8001/api/" -UseBasicParsing -TimeoutSec 5
     if ($response.StatusCode -eq 200) {
         Write-Host "✅ Lemonade server is running" -ForegroundColor Green
     } else {
@@ -27,7 +27,7 @@ Write-Host "🚀 Starting Tiny Agents..." -ForegroundColor Green
 try {
     # Activate and run in the same context
     & .\.venv\Scripts\Activate.ps1
-    tiny-agents run agent.json
+     .\file-assistant\tiny-agents run agent.json
 } catch {
     Write-Host "❌ Failed to run the agent. Make sure all dependencies are installed correctly." -ForegroundColor Red
     exit 1

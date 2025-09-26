@@ -46,7 +46,7 @@ if [ $? -eq 0 ]; then
     echo "Next steps:"
     echo "1. Activate virtual environment: source .venv/bin/activate"
     echo "2. Start Lemonade server: lemonade-server-dev serve"
-    echo "3. Configure your model in: http://localhost:8000/#model-management"
+    echo "3. Configure your model in: http://localhost:8001/#model-management"
     echo "4. Run the agent: tiny-agents run agent.json"
     echo ""
     echo "📚 Documentation: https://jcnok.github.io/ai-hr-talent-analyzer/"

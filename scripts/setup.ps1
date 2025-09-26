@@ -39,7 +39,7 @@ try {
     Write-Host "Next steps:"
     Write-Host "1. Activate virtual environment: .venv\Scripts\activate"
     Write-Host "2. Start Lemonade server: lemonade-server-dev serve"
-    Write-Host "3. Configure your model in: http://localhost:8000/#model-management"
+    Write-Host "3. Configure your model in: http://localhost:8001/#model-management"
     Write-Host "4. Run the agent: tiny-agents run agent.json"
     Write-Host ""
     Write-Host "📚 Documentation: https://jcnok.github.io/ai-hr-talent-analyzer/"

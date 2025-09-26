@@ -18,7 +18,7 @@ else
 fi
 
 # Check if Lemonade server is running
-if ! curl -s http://localhost:8000/api/ > /dev/null; then
+if ! curl -s http://localhost:8001/api/ > /dev/null; then
     echo "❌ Lemonade server is not running."
     echo "Please start it first: lemonade-server-dev serve"
     exit 1
@@ -28,4 +28,5 @@ echo "✅ Lemonade server is running"
 
 # Run the agent
 echo "🚀 Starting Tiny Agents..."
+cd ./file-assistant
 tiny-agents run agent.json
